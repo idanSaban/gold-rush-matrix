@@ -1,0 +1,41 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#wrapper {
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "* c *";
+}
+
+#container {
+    grid-area: c
+}
+
+.col {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+
+.c {
+    border-radius: 50%;
+    background-color: goldenrod;
+}
+
+.p1 {
+    background-color: blue;
+}
+
+.p2 {
+    background-color: red;
+}
+
+.e {
+    background-color: rgb(247, 247, 197)
+}
+
+.b {
+    background-color: chocolate;
+}
