@@ -1,4 +1,5 @@
 body {
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
     background-image: linear-gradient(to right, rgb(95, 10, 9), #063646);
@@ -8,8 +9,8 @@ body {
 #wrapper {
     height: 100vh;
     display: grid;
-    grid-template-rows: 1fr 6fr 1fr;
-    grid-template-areas: "t" "c"
+    grid-template-areas: "t" "c" ".";
+    grid-template-rows: auto;
 }
 
 #top-bar {
@@ -18,7 +19,6 @@ body {
     grid-template-areas: " a b";
     grid-template-columns: 1fr 1fr;
     height: 50px;
-    border-bottom: 5px solid #080705;
 }
 
 .score {
@@ -26,7 +26,8 @@ body {
     justify-content: center;
     align-content: center;
     color: #FFF1D0;
-    font-size: 150%
+    font-size: 150%;
+    border-bottom: 5px solid #080705;
 }
 
 #score-a {
@@ -43,6 +44,7 @@ body {
     display: grid;
     grid-area: c;
     justify-content: center;
+    align-content: center;
 }
 
 #game {
@@ -80,4 +82,19 @@ body {
 
 .b {
     background-color: rgb(46, 30, 18);
+    border: #131515 dashed 2px;
+    border-radius: 25%;
+}
+
+#signature {
+    display: grid;
+    justify-content: center;
+    align-content: flex-end;
+    width: 50%;
+    margin: 0 25%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    color: rgba(255, 165, 48, 0.096);
 }

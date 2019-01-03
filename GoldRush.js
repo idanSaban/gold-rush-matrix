@@ -38,7 +38,7 @@ class GoldRush extends Matrix {
 
     }
 
-    generateBlocks(num = 10) {
+    generateBlocks(num = 8) {
         let count = 0
         while (0 < num)
         {
@@ -123,25 +123,40 @@ class GoldRush extends Matrix {
     }
 
     isGameOver() {
-        if (this.coins === 0)
-        {
-            if (this.players[0].coins === this.players[1].coins)
-            {
-                alert("even score - no winner this time")
-            }
-            else
-            {
-                let winner = this.players[0].coins > this.players[1].coins ? "Player 1" : "Player 2"
-                alert(`the winner is ${winner}`)
-
-            }
-            alert("get ready for another game!")
-            this.load()
-            return true
-        }
-        return false
+        return this.coins === 0
     }
+    getWinner() {
+        const p1 = this.players[0].coins
+        const p2 = this.players[1].coins
+        if (p1 > p2)
+        {
+            return 1
+        } else if (p1 < p1)
+        {
+            return 2
+        }
+        else if (p1 === p2)
+        {
+            return "e"
+        }
+    }
+
 }
+    //     {
+    //         if (this.players[0].coins === this.players[1].coins)
+    //         {
+    //             return e
+    //         }
+    //         else
+    //         {
+    //             // let winner = this.players[0].coins > this.players[1].coins ? "Player 1" : "Player 2"
+    //             return this.players[0].coins > this.players[1].coins ? "Player 1" : "Player 2"
+
+    //         }
+    //         // return true
+    //     }
+    //     return false
+    // }
 
 // console.log(g)
 // const g = new GoldRush()

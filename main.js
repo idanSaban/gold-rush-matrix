@@ -31,7 +31,6 @@ $(document).on("keydown", function (e) {
     {
         board.move("p2", "up")
     }
-
     if (e.which == 40)
     {
         board.move("p2", "down")
@@ -48,12 +47,28 @@ $(document).on("keydown", function (e) {
     r.renderScores(board.players)
 
     setTimeout(() => {
-        if (board.isGameOver())
+
+        if (!board.isGameOver())
         {
-            r.renderBoard(board.matrix)
-            r.renderScores(board.players)
+            return
         }
+        winner = board.getWinner()
+        if (winner === e)
+        {
+            alert("even score - no winner this time")
+        }
+        else if (winner === 1)
+        {
+            alert("RED ARE THE WINNERS")
+        }
+        else if (winner === 2)
+        {
+            alert("BLUE ARE THE WINNERS")
+        }
+        alert("get ready for another game!")
+        board.load()
+        r.renderBoard(board.matrix)
+        r.renderScores(board.players)
     }, 1000)
 
 })
-
