@@ -2,58 +2,58 @@ const r = new Renderer()
 const board = new GoldRush()
 board.load()
 r.renderBoard(board.matrix)
-
+r.renderScores(board.players)
 
 $(document).on("keydown", function (e) {
-    console.log(e.which)
     // p1
     if (e.which == 87)
     {
-        board.up("p1")
+        board.move("p1", "up")
     }
 
     if (e.which == 83)
     {
-        board.down("p1")
+        board.move("p1", "down")
     }
 
     if (e.which == 68)
     {
-        board.right("p1")
+        board.move("p1", "right")
     }
 
     if (e.which == 65)
     {
-        board.left("p1")
+        board.move("p1", "left")
     }
 
     // p2
     if (e.which == 38)
     {
-        console.log(38)
-        board.up("p2")
+        board.move("p2", "up")
     }
 
     if (e.which == 40)
     {
-        board.down("p2")
+        board.move("p2", "down")
     }
     if (e.which == 39)
     {
-        board.right("p2")
+        board.move("p2", "right")
     }
     if (e.which == 37)
     {
-        board.left("p2")
+        board.move("p2", "left")
     }
     r.renderBoard(board.matrix)
+    r.renderScores(board.players)
+
     setTimeout(() => {
         if (board.isGameOver())
         {
             r.renderBoard(board.matrix)
+            r.renderScores(board.players)
         }
     }, 1000)
 
 })
-
 
