@@ -7,6 +7,7 @@ class GoldRush extends Matrix {
         this.rows = rows
         this.cols = cols
         this.coins
+
     }
     load() {
         console.log("loading")
@@ -20,6 +21,7 @@ class GoldRush extends Matrix {
         this.alter(this.players[1].row, this.players[1].col, "p2")
         this.generateCoins()
         this.generateBlocks()
+
     }
 
     clear() {
@@ -35,16 +37,17 @@ class GoldRush extends Matrix {
         this.matrix = m
 
     }
+
     generateBlocks(num = 10) {
         let count = 0
-        while (count < num)
+        while (0 < num)
         {
             let x = Math.floor(Math.random() * this.matrix.length)
             let y = Math.floor(Math.random() * this.matrix[0].length)
-            if (this.checkPosition(x, y) && !this.checkForCoins(x, y))
+            if (this.isValidPosition(x, y) && !this.isCoin(x, y))
             {
                 this.alter(x, y, "b")
-                count++
+                num--
             }
         }
 
@@ -56,17 +59,17 @@ class GoldRush extends Matrix {
         {
             let x = Math.floor(Math.random() * this.matrix.length)
             let y = Math.floor(Math.random() * this.matrix[0].length)
-            if (this.checkPosition(x, y) && !this.checkForCoins(x, y))
+            if (this.isValidPosition(x, y) && !this.isCoin(x, y))
             {
                 this.alter(x, y, "c")
                 num--
             }
         }
     }
-    checkForCoins(row, col) {
+    isCoin(row, col) {
         return this.get(row, col) === "c" ? true : false
     }
-    checkPosition(row, col) {
+    isValidPosition(row, col) {
         if (row >= this.matrix.length || col >= this.matrix[0].length)
         {
             return false
@@ -81,88 +84,44 @@ class GoldRush extends Matrix {
         }
         return false
     }
+    move(player, direction) {
 
-    down(p) {
-        const player = p === "p1" ? this.players[0] : this.players[1]
-        if (this.checkPosition(player.row + 1, player.col))
+        const p = player === "p1" ? this.players[0] : this.players[1]
+        const nextPoint = { row: p.row, col: p.col }
+        if (direction === "up")
         {
-            this.alter(player.row, player.col, "e")
-            player.row++
-            if (this.checkForCoins(player.row, player.col))
-            {
-                player.coins++
-                this.coins--
-                console.log(`${p} coins: ${player.coins}`)
-            }
-            this.alter(player.row, player.col, p)
-            // this.isGameOver()
+            nextPoint.row--
         }
-        else
+        else if (direction === "down")
+        {
+            nextPoint.row++
+        }
+        else if (direction === "left")
+        {
+            nextPoint.col--
+        }
+        else if (direction === "right")
+        {
+            nextPoint.col++
+        }
+        if (this.isValidPosition(nextPoint.row, nextPoint.col))
+        {
+            this.alter(p.row, p.col, "e")
+            p.row = nextPoint.row
+            p.col = nextPoint.col
+            if (this.isCoin(p.row, p.col))
+            {
+                p.coins++
+                this.coins--
+                console.log(`${player} coins: ${p.coins}`)
+            }
+            this.alter(nextPoint.row, nextPoint.col, player)
+        } else
         {
             console.log("thats outside of the game board")
         }
     }
 
-    up(p) {
-        const player = p === "p1" ? this.players[0] : this.players[1]
-        if (this.checkPosition(player.row - 1, player.col))
-        {
-            this.alter(player.row, player.col, "e")
-            player.row--
-            if (this.checkForCoins(player.row, player.col))
-            {
-                player.coins++
-                this.coins--
-                console.log(`${p} coins: ${player.coins}`)
-            }
-            this.alter(player.row, player.col, p)
-            // this.isGameOver()
-        }
-        else
-        {
-            console.log("thats outside of the game board")
-        }
-    }
-    left(p) {
-        const player = p === "p1" ? this.players[0] : this.players[1]
-        if (this.checkPosition(player.row, player.col - 1))
-        {
-            this.alter(player.row, player.col, "e")
-            player.col--
-            if (this.checkForCoins(player.row, player.col))
-            {
-                player.coins++
-                this.coins--
-                console.log(`${p} coins: ${player.coins}`)
-            }
-            this.alter(player.row, player.col, p)
-            // this.isGameOver()
-        }
-        else
-        {
-            console.log("thats outside of the game board")
-        }
-    }
-    right(p) {
-        const player = p === "p1" ? this.players[0] : this.players[1]
-        if (this.checkPosition(player.row, player.col + 1))
-        {
-            this.alter(player.row, player.col, "e")
-            player.col++
-            if (this.checkForCoins(player.row, player.col))
-            {
-                player.coins++
-                this.coins--
-                console.log(`${p} coins: ${player.coins}`)
-            }
-            this.alter(player.row, player.col, p)
-            // this.isGameOver()
-        }
-        else
-        {
-            console.log("thats outside of the game board")
-        }
-    }
     isGameOver() {
         if (this.coins === 0)
         {
