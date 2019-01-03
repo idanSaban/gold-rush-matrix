@@ -15,20 +15,27 @@
 <body>
     <div id="wrapper">
         <div id="top-bar">
+            <div id="score-a" class="score">
+            </div>
+            <div id="score-b" class="score">
+            </div>
         </div>
-        <div id="container">
+        <div id="game-container">
+            <ul id="game">
 
+            </ul>
         </div>
+
     </div>
     <script id="board-template" type="text/x-handlebars-template">
         {{#each data}}
-            <div class="row">
+            <li class="row">
                 {{#each this}}
-                <div class="col {{this}}">
+                    <div class="col {{this}}">
                   
-                </div>
+                    </div>
                 {{/each}}
-            </div>
+            </li>
         {{/each}}
       </script>
     <script src="Matrix.js"></script>

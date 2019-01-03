@@ -1,41 +1,83 @@
 body {
     padding: 0;
     margin: 0;
+    background-image: linear-gradient(to right, rgb(95, 10, 9), #063646);
+    background-size: cover;
 }
 
 #wrapper {
     height: 100vh;
     display: grid;
-    grid-template-areas: "* c *";
+    grid-template-rows: 1fr 6fr 1fr;
+    grid-template-areas: "t" "c"
 }
 
-#container {
-    grid-area: c
+#top-bar {
+    grid-area: t;
+    display: grid;
+    grid-template-areas: " a b";
+    grid-template-columns: 1fr 1fr;
+    height: 50px;
+    border-bottom: 5px solid #080705;
+}
+
+.score {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    color: #FFF1D0;
+    font-size: 150%
+}
+
+#score-a {
+    grid-area: a;
+    background-color: #086788;
+}
+
+#score-b {
+    grid-area: b;
+    background-color: #DD1C1A;
+}
+
+#game-container {
+    display: grid;
+    grid-area: c;
+    justify-content: center;
+}
+
+#game {
+    background-color: rgb(107, 72, 78);
+    border: #080705 2px solid;
+    border-radius: 2%;
+    padding: 5px 5px 0px 5px;
+}
+
+.row {
+    list-style: none;
 }
 
 .col {
     display: inline-block;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
 }
 
 .c {
     border-radius: 50%;
-    background-color: goldenrod;
+    background-image: url("https://png.pngtree.com/element_origin_min_pic/00/00/00/0056a259fd036ce.jpg");
+    background-size: cover;
 }
 
 .p1 {
-    background-color: blue;
+    border-radius: 25%;
+    background-color: #086788;
 }
 
 .p2 {
-    background-color: red;
-}
-
-.e {
-    background-color: rgb(247, 247, 197)
+    border-radius: 25%;
+    background-color: #DD1C1A;
 }
 
 .b {
-    background-color: chocolate;
+    background-color: rgb(46, 30, 18);
 }

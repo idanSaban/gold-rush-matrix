@@ -1,13 +1,19 @@
 class Renderer {
     constructor() { }
     renderBoard(data) {
-        console.log("rendering")
-        console.log(data)
-        $('#container').empty()
+
+        $('#game').empty()
         const source = $('#board-template').html();
         const template = Handlebars.compile(source);
         const newHTML = template({ data });
-        $('#container').append(newHTML);
+        $('#game').append(newHTML);
+    }
+    renderScores(data) {
+        $("#score-a").empty()
+        $("#score-a").append(data[0].coins)
+        $("#score-b").empty()
+        $("#score-b").append(data[1].coins)
+
     }
 
 }
