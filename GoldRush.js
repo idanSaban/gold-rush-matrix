@@ -16,7 +16,6 @@ class GoldRush extends Matrix {
             { row: this.rows - 1, col: this.cols - 1, coins: 0 }
         ]
         this.clear()
-        console.log(this.players)
         this.alter(this.players[0].row, this.players[0].col, "p1")
         this.alter(this.players[1].row, this.players[1].col, "p2")
         this.generateCoins()
@@ -113,12 +112,8 @@ class GoldRush extends Matrix {
             {
                 p.coins++
                 this.coins--
-                console.log(`${player} coins: ${p.coins}`)
             }
             this.alter(nextPoint.row, nextPoint.col, player)
-        } else
-        {
-            console.log("thats outside of the game board")
         }
     }
 

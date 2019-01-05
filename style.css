@@ -85,16 +85,3 @@ body {
     border: #131515 dashed 2px;
     border-radius: 25%;
 }
-
-#signature {
-    display: grid;
-    justify-content: center;
-    align-content: flex-end;
-    width: 50%;
-    margin: 0 25%;
-    height: 50px;
-    position: fixed;
-    bottom: 0;
-    height: 50px;
-    color: rgba(255, 165, 48, 0.096);
-}

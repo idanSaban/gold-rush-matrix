@@ -52,8 +52,8 @@ $(document).on("keydown", function (e) {
         {
             return
         }
-        winner = board.getWinner()
-        if (winner === e)
+        const winner = board.getWinner()
+        if (winner === `e`)
         {
             alert("even score - no winner this time")
         }
