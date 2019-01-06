@@ -1,58 +1,58 @@
-const r = new Renderer()
-const board = new GoldRush()
-board.load()
-r.renderBoard(board.matrix)
-r.renderScores(board.players)
+const renderer = new Renderer()
+const game = new GoldRush()
+game.load()
+renderer.renderBoard(game.matrix)
+renderer.renderScores(game.players)
 
 $(document).on("keydown", function (e) {
     // p1
     if (e.which == 87)
     {
-        board.move("p1", "up")
+        game.move("p1", "up")
     }
 
     if (e.which == 83)
     {
-        board.move("p1", "down")
+        game.move("p1", "down")
     }
 
     if (e.which == 68)
     {
-        board.move("p1", "right")
+        game.move("p1", "right")
     }
 
     if (e.which == 65)
     {
-        board.move("p1", "left")
+        game.move("p1", "left")
     }
 
     // p2
     if (e.which == 38)
     {
-        board.move("p2", "up")
+        game.move("p2", "up")
     }
     if (e.which == 40)
     {
-        board.move("p2", "down")
+        game.move("p2", "down")
     }
     if (e.which == 39)
     {
-        board.move("p2", "right")
+        game.move("p2", "right")
     }
     if (e.which == 37)
     {
-        board.move("p2", "left")
+        game.move("p2", "left")
     }
-    r.renderBoard(board.matrix)
-    r.renderScores(board.players)
+    renderer.renderBoard(game.matrix)
+    renderer.renderScores(game.players)
 
     setTimeout(() => {
 
-        if (!board.isGameOver())
+        if (!game.isGameOver())
         {
             return
         }
-        const winner = board.getWinner()
+        const winner = game.getWinner()
         if (winner === `e`)
         {
             alert("even score - no winner this time")
@@ -66,9 +66,9 @@ $(document).on("keydown", function (e) {
             alert("BLUE ARE THE WINNERS")
         }
         alert("get ready for another game!")
-        board.load()
-        r.renderBoard(board.matrix)
-        r.renderScores(board.players)
+        game.load()
+        renderer.renderBoard(game.matrix)
+        renderer.renderScores(game.players)
     }, 1000)
 
 })

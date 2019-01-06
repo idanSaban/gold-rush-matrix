@@ -20,7 +20,6 @@ class GoldRush extends Matrix {
         this.alter(this.players[1].row, this.players[1].col, "p2")
         this.generateCoins()
         this.generateBlocks()
-
     }
 
     clear() {
@@ -34,40 +33,54 @@ class GoldRush extends Matrix {
             }
         }
         this.matrix = m
-
     }
 
-    generateBlocks(num = 8) {
-        let count = 0
+    fillBoard(num, what) {
         while (0 < num)
         {
             let x = Math.floor(Math.random() * this.matrix.length)
             let y = Math.floor(Math.random() * this.matrix[0].length)
             if (this.isValidPosition(x, y) && !this.isCoin(x, y))
             {
-                this.alter(x, y, "b")
+                this.alter(x, y, what)
                 num--
             }
         }
+    }
 
+    generateBlocks(num = 8) {
+        this.fillBoard(num, "b")
+        // while (0 < num)
+        // {
+        //     let x = Math.floor(Math.random() * this.matrix.length)
+        //     let y = Math.floor(Math.random() * this.matrix[0].length)
+        //     if (this.isValidPosition(x, y) && !this.isCoin(x, y))
+        //     {
+        //         this.alter(x, y, "b")
+        //         num--
+        //     }
+        // }
     }
 
     generateCoins(num = 10) {
         this.coins = num
-        while (0 < num)
-        {
-            let x = Math.floor(Math.random() * this.matrix.length)
-            let y = Math.floor(Math.random() * this.matrix[0].length)
-            if (this.isValidPosition(x, y) && !this.isCoin(x, y))
-            {
-                this.alter(x, y, "c")
-                num--
-            }
-        }
+        this.fillBoard(num, "c")
+        // while (0 < num)
+        // {
+        //     let x = Math.floor(Math.random() * this.matrix.length)
+        //     let y = Math.floor(Math.random() * this.matrix[0].length)
+        //     if (this.isValidPosition(x, y) && !this.isCoin(x, y))
+        //     {
+        //         this.alter(x, y, "c")
+        //         num--
+        //     }
+        // }
     }
+
     isCoin(row, col) {
         return this.get(row, col) === "c" ? true : false
     }
+
     isValidPosition(row, col) {
         if (row >= this.matrix.length || col >= this.matrix[0].length)
         {
@@ -83,8 +96,8 @@ class GoldRush extends Matrix {
         }
         return false
     }
-    move(player, direction) {
 
+    move(player, direction) {
         const p = player === "p1" ? this.players[0] : this.players[1]
         const nextPoint = { row: p.row, col: p.col }
         if (direction === "up")
@@ -120,6 +133,7 @@ class GoldRush extends Matrix {
     isGameOver() {
         return this.coins === 0
     }
+
     getWinner() {
         const p1 = this.players[0].coins
         const p2 = this.players[1].coins
@@ -135,39 +149,4 @@ class GoldRush extends Matrix {
             return "e"
         }
     }
-
 }
-    //     {
-    //         if (this.players[0].coins === this.players[1].coins)
-    //         {
-    //             return e
-    //         }
-    //         else
-    //         {
-    //             // let winner = this.players[0].coins > this.players[1].coins ? "Player 1" : "Player 2"
-    //             return this.players[0].coins > this.players[1].coins ? "Player 1" : "Player 2"
-
-    //         }
-    //         // return true
-    //     }
-    //     return false
-    // }
-
-// console.log(g)
-// const g = new GoldRush()
-// g.load()
-// g.print()
-// g.down("p1")
-// g.down("p1")
-// g.down("p1")
-// g.down("p1")
-// g.print()
-// g.down("p1")
-// g.down("p1")
-// g.down("p1")
-// g.down("p1")
-// g.down("p1")
-// g.down("p1")
-// g.print()
-
-// g.print()
